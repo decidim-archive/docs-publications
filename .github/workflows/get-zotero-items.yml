@@ -1,7 +1,11 @@
 name: Get Zotero Items and Put Into Asciidoc Files
 
-# Run every hour, at minute HH:13
 on:
+  push:
+    branches:
+    - master
+
+  # Run every hour, at minute HH:13
   schedule:
   - cron:  '13 * * * *'
 
@@ -16,13 +20,14 @@ jobs:
       with:
         url: 'https://api.zotero.org/groups/1607464/collections/PUEWSLWI/items?sort=date&format=bibtex'
         method: 'GET'
+        contentType: 'application/x-bibtex'
 
     - name: Store Zotero API response in bibtex file
       env:
         ZOTERO_API_RESPONSE: ${{ steps.zotero_request.outputs.response }}
       run: |
         mkdir zotero
-        cat "$ZOTERO_API_RESPONSE" > zotero/selection-academic.bibtex
+        echo "$ZOTERO_API_RESPONSE" > zotero/selection-academic.bib
 
     - name: Upload bibtex file
       uses: actions/upload-artifact@v1
