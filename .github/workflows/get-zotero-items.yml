@@ -18,22 +18,21 @@ jobs:
       id: zotero_request
       uses: fjogeleit/http-request-action@master
       with:
-        url: 'https://api.zotero.org/groups/1607464/collections/PUEWSLWI/items?sort=date&format=bibtex'
+        url: 'https://api.zotero.org/groups/1607464/collections/PUEWSLWI/items?sort=date&format=csljson'
         method: 'GET'
-        contentType: 'application/x-bibtex'
 
-    - name: Store Zotero API response in bibtex file
+    - name: Store Zotero API response in CSL JSON file
       env:
         ZOTERO_API_RESPONSE: ${{ steps.zotero_request.outputs.response }}
       run: |
         mkdir zotero
-        echo "$ZOTERO_API_RESPONSE" > zotero/selection-academic.bib
+        echo "$ZOTERO_API_RESPONSE" > zotero/selection-academic.json
 
-    - name: Upload bibtex file
+    - name: Upload CSL JSON file
       uses: actions/upload-artifact@v1
       with:
         name: zotero
-        path: zotero
+        path: zotero/selection-academic.json
     
   put-items-in-asciidoc:
     needs: get-zotero-items
