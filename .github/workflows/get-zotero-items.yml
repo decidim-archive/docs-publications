@@ -1,0 +1,30 @@
+name: Get Zotero Items and Put Into Asciidoc Files
+
+# Run every hour, at minute HH:13
+on:
+  schedule:
+  - cron:  '13 * * * *'
+
+jobs:
+  get-zotero-items:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Github Action for curl
+      uses: wei/curl@v1.1.1
+      with:
+        args: --output selection-academic.bibtex https://api.zotero.org/groups/1607464/collections/PUEWSLWI/items?sort=date&format=bibtex
+
+    - name: Archive production artifacts
+      uses: actions/upload-artifact@v1
+      with:
+        name: zotero
+        path: selection-academic.bibtex
+    
+  put-items-in-asciidoc:
+    needs: get-zotero-items
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out this repository
+      uses: actions/checkout@v2
