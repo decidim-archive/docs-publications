@@ -10,16 +10,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Github Action for curl
+    - name: Create zotero dir
+      run: mkdir zotero
+
+    - name: Curl bibtex file using Zotero API
       uses: wei/curl@v1.1.1
       with:
-        args: --output selection-academic.bibtex https://api.zotero.org/groups/1607464/collections/PUEWSLWI/items?sort=date&format=bibtex
+        args: --output zotero/selection-academic.bib "https://api.zotero.org/groups/1607464/collections/PUEWSLWI/items?sort=date&format=bibtex"
 
-    - name: Archive production artifacts
+    - name: Upload bibtex file
       uses: actions/upload-artifact@v1
       with:
         name: zotero
-        path: selection-academic.bibtex
+        path: zotero
     
   put-items-in-asciidoc:
     needs: get-zotero-items
