@@ -13,12 +13,23 @@ jobs:
   get-zotero-items:
     runs-on: ubuntu-latest
 
+    env:
+      ZOTERO_COLLECTION_NAME: ${{matrix.zotero-collection.name}}
+
+    strategy:
+      matrix:
+        zotero-group: [1607464]
+        zotero-collection:
+        - name: selection-academic
+          id: 'PUEWSLWI'
+        language: ['en']
+
     steps:
     - name: Run HTTP request on Zotero API
       id: zotero_request
       uses: fjogeleit/http-request-action@master
       with:
-        url: 'https://api.zotero.org/groups/1607464/collections/PUEWSLWI/items?sort=date&format=csljson'
+        url: https://api.zotero.org/groups/${{matrix.zotero-group}}/collections/${{matrix.zotero-collection.id}}/items?format=csljson
         method: 'GET'
 
     - name: Store Zotero API response in CSL JSON file
@@ -26,18 +37,16 @@ jobs:
         ZOTERO_API_RESPONSE: ${{ steps.zotero_request.outputs.response }}
       run: |
         mkdir zotero
-        echo "$ZOTERO_API_RESPONSE" > zotero/selection-academic.json
+        echo "$ZOTERO_API_RESPONSE" > zotero/$ZOTERO_COLLECTION_NAME.json
 
-    - name: Upload CSL JSON file
+    - name: Get items and replace "/" in ids from zotero response, using jq
+      run: jq '.items | (.[] | .id) |= ( split("/") | join("-") )' zotero/$ZOTERO_COLLECTION_NAME.json > zotero/$ZOTERO_COLLECTION_NAME.items.json
+
+    - name: Upload artifact with CSL JSON files
       uses: actions/upload-artifact@v1
       with:
-        name: zotero
-        path: zotero/selection-academic.json
+        name: zotero-${{matrix.zotero-group}}-${{matrix.zotero-collection.id}}-${{matrix.zotero-collection.name}}
+        path: zotero
     
-  put-items-in-asciidoc:
-    needs: get-zotero-items
-    runs-on: ubuntu-latest
-
-    steps:
     - name: Check out this repository
       uses: actions/checkout@v2
