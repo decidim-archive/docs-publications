@@ -47,9 +47,9 @@ jobs:
           title: 'Presentations'
         - name: selection-talks-video
           key: 'FV7Q2L5P'
-          file-name: videos
+          file-name: video-talks
           group: '1607464'
-          title: 'Videos'
+          title: 'Videos talks'
 
         language: ['en', 'es', 'ca']
 
@@ -112,7 +112,7 @@ jobs:
         name: zotero
         path: zotero
 
-    - run: mkdir output
+    - run: mkdir -p asciidoc/${{ matrix.language }}/modules/ROOT/pages
 
     - name: Create artificial input file for Pandoc
       # "nocite: '@*'" makes pandoc-citeproc generate a bibliographic entry for
@@ -133,10 +133,40 @@ jobs:
           --metadata=reference-section-title:"${{ matrix.zotero-collection.title }}"
           --metadata=lang:${{ matrix.language }}
           --to asciidoctor
-          --output="output/${{ matrix.zotero-collection.file-name }}.adoc"
-
-    - name: Upload artifact with Asciidoc files, for debug
+          --output="asciidoc/${{ matrix.language }}/modules/ROOT/pages/${{ matrix.zotero-collection.file-name }}.adoc"
+  
+    - name: Upload artifact with Asciidoc files
       uses: actions/upload-artifact@master
       with:
-        name: output
-        path: output
+        name: asciidoc
+        path: asciidoc
+
+  push-asciidoc-files:
+    runs-on: ubuntu-latest
+
+    needs: update-publication-list
+
+    steps:
+    - name: Check out this repository
+      uses: actions/checkout@v2
+
+    - name: Download 'asciidoc' artifact
+      uses: actions/download-artifact@v1
+      with:
+        name: asciidoc
+        path: asciidoc
+
+    - run: |
+        cp -R asciidoc/* .
+        rm -rf asciidoc
+
+    - name: Commit files
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git commit -m "Update publication lists" -a
+
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
