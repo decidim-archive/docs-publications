@@ -1,7 +1,7 @@
 :page-partial:
 
 [[bibliography]]
-== Videos talks
+== Video talks
 
 [[refs]]
 [[ref-4881969-S7W4DL9X]]
