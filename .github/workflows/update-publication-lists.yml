@@ -49,7 +49,7 @@ jobs:
           key: 'FV7Q2L5P'
           file-name: video-talks
           group: '1607464'
-          title: 'Videos talks'
+          title: 'Video talks'
 
         language: ['en', 'es', 'ca']
 
