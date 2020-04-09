@@ -154,11 +154,7 @@ jobs:
       uses: actions/download-artifact@v1
       with:
         name: asciidoc
-        path: asciidoc
-
-    - run: |
-        cp -R asciidoc/* .
-        rm -rf asciidoc
+        path: .
 
     - name: Commit files
       run: |
