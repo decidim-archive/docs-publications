@@ -1,3 +1,5 @@
+:page-partial:
+
 [[bibliography]]
 == Videos talks
 
