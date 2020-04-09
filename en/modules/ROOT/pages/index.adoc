@@ -1,0 +1,17 @@
+= Publications
+
+:leveloffset: +1
+
+include::./academic.adoc[]
+
+include::./technical.adoc[]
+
+include::./media.adoc[]
+
+include::./media-mentions.adoc[]
+
+include::./interviews.adoc[]
+
+include::./presentations.adoc[]
+
+include::./videos-talks.adoc[]
