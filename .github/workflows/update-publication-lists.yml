@@ -12,9 +12,6 @@ jobs:
   update-publication-list:
     runs-on: ubuntu-latest
 
-    env:
-      ZOTERO_COLLECTION_NAME: ${{ matrix.zotero-collection.name }}
-
     strategy:
       matrix:
         zotero-collection:
@@ -56,30 +53,64 @@ jobs:
 
         language: ['en', 'es', 'ca']
 
+    env:
+      ZOTERO_COLLECTION_NAME: ${{ matrix.zotero-collection.name }}
+
     steps:
     - name: Check out this repository
       uses: actions/checkout@v2
-    
+
+    - run: |
+        mkdir zotero
+        touch zotero/IGNORE
+
+    - name: Upload empty 'zotero' artifact
+      uses: actions/upload-artifact@v1
+      with:
+        name: zotero
+        path: zotero
+
+    - name: Download 'zotero' artifact
+      uses: actions/download-artifact@v1
+      with:
+        name: zotero
+        path: zotero
+
+    # To reduce unnecessary requests to Zotero API
+    - name: Check Zotero collection file existence
+      id: check-zotero-files-exist
+      uses: andstor/file-existence-action@v1
+      with:
+        files: 'zotero/${{ matrix.zotero-collection.name }}.json, zotero/${{ matrix.zotero-collection.name }}.items.json'
+
     - name: Run HTTP request on Zotero API
-      id: zotero_request
+      if: steps.check-zotero-files-exist.outputs.files_exists == 'false'
+      id: zotero-request
       uses: fjogeleit/http-request-action@master
       with:
         url: https://api.zotero.org/groups/${{ matrix.zotero-collection.group }}/collections/${{ matrix.zotero-collection.key }}/items?format=csljson
         method: 'GET'
 
     - name: Store Zotero API response in CSL JSON file
+      if: steps.check-zotero-files-exist.outputs.files_exists == 'false'
       env:
-        ZOTERO_API_RESPONSE: ${{ steps.zotero_request.outputs.response }}
-      run: |
-        mkdir zotero
-        echo "$ZOTERO_API_RESPONSE" > zotero/$ZOTERO_COLLECTION_NAME.json
+        ZOTERO_API_RESPONSE: ${{ steps.zotero-request.outputs.response }}
+      run: echo "$ZOTERO_API_RESPONSE" > zotero/$ZOTERO_COLLECTION_NAME.json
 
     - name: Get items and replace "/" in ids from Zotero response, using jq
+      if: steps.check-zotero-files-exist.outputs.files_exists == 'false'
       run: >
         jq 
         '.items | (.[] | .id) |= ( split("/") | join("-") )'
         zotero/$ZOTERO_COLLECTION_NAME.json 
         > zotero/$ZOTERO_COLLECTION_NAME.items.json
+
+    - name: Upload 'zotero' artifact with CSL JSON files
+      if: steps.check-zotero-files-exist.outputs.files_exists == 'false'
+      uses: actions/upload-artifact@v1
+      with:
+        name: zotero
+        path: zotero
 
     - run: mkdir output
 
@@ -109,9 +140,3 @@ jobs:
       with:
         name: output
         path: output
-
-    - name: Upload artifact with CSL JSON files, for debug
-      uses: actions/upload-artifact@v1
-      with:
-        name: zotero-${{ matrix.zotero-collection.group }}-${{ matrix.zotero-collection.key }}-${{ matrix.zotero-collection.name }}-${{ matrix.language }}
-        path: zotero
