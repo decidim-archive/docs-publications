@@ -1,0 +1,4 @@
+buttons:
+- title: Update publication lists
+  action: "update-publication-lists"
+  description: Update publication lists (retrieve Zotero data)

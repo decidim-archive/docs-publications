@@ -1,16 +1,15 @@
-name: Get Zotero Items and Put Into Asciidoc Files
+name: Update publication lists in Asciidoc with info retrieved from Zotero
 
 on:
+  repository_dispatch:
+    types: [update-publication-lists]
+
   push:
     branches:
     - master
 
-  # Run every hour, at minute HH:13
-  schedule:
-  - cron:  '13 * * * *'
-
 jobs:
-  get-zotero-items:
+  update-publication-list:
     runs-on: ubuntu-latest
 
     env:
