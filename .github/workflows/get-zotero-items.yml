@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      ZOTERO_COLLECTION_NAME: ${{matrix.zotero-collection.name}}
+      ZOTERO_COLLECTION_NAME: ${{ matrix.zotero-collection.name }}
 
     strategy:
       matrix:
@@ -24,7 +24,7 @@ jobs:
           file-name: academic
           group: '1607464'
           title: 'Academic publications'
-        language: ['en']
+        language: ['en', 'es', 'ca']
 
     steps:
     - name: Check out this repository
@@ -34,7 +34,7 @@ jobs:
       id: zotero_request
       uses: fjogeleit/http-request-action@master
       with:
-        url: https://api.zotero.org/groups/${{matrix.zotero-collection.group}}/collections/${{matrix.zotero-collection.id}}/items?format=csljson
+        url: https://api.zotero.org/groups/${{ matrix.zotero-collection.group }}/collections/${{ matrix.zotero-collection.id }}/items?format=csljson
         method: 'GET'
 
     - name: Store Zotero API response in CSL JSON file
@@ -44,41 +44,44 @@ jobs:
         mkdir zotero
         echo "$ZOTERO_API_RESPONSE" > zotero/$ZOTERO_COLLECTION_NAME.json
 
-    - name: Get items and replace "/" in ids from zotero response, using jq
+    - name: Get items and replace "/" in ids from Zotero response, using jq
       run: >
         jq 
         '.items | (.[] | .id) |= ( split("/") | join("-") )'
         zotero/$ZOTERO_COLLECTION_NAME.json 
         > zotero/$ZOTERO_COLLECTION_NAME.items.json
 
-    - run: ls -l zotero
-    
     - run: mkdir output
 
-    - run: |
+    - name: Create artificial input file for Pandoc
+      # "nocite: '@*'" makes pandoc-citeproc generate a bibliographic entry for
+      # every item in bibliography file, even with no cites.
+      run: |
         echo "---" > input.md
         echo "nocite: '@*'" >> input.md
         echo "..." >> input.md
 
-    - uses: docker://pandoc/core:2.9.2
+    - name: Use pandoc-citeproc to generate a bibliography in Asciidoc
+      uses: docker://pandoc/core:2.9.2
       with:
         args: >
           input.md
           --filter=pandoc-citeproc
-          --metadata=bibliography:"zotero/${{matrix.zotero-collection.name}}.items.json"
+          --metadata=bibliography:"zotero/${{ matrix.zotero-collection.name }}.items.json"
           --metadata=csl:apa-for-asciidoc.csl
-          --metadata=reference-section-title:"${{matrix.zotero-collection.title}}"
-          --metadata=lang:${{matrix.language}}
+          --metadata=reference-section-title:"${{ matrix.zotero-collection.title }}"
+          --metadata=lang:${{ matrix.language }}
           --to asciidoctor
-          --output="output/${{matrix.zotero-collection.file-name}}.adoc"
+          --output="output/${{ matrix.zotero-collection.file-name }}.adoc"
 
-    - uses: actions/upload-artifact@master
+    - name: Upload artifact with Asciidoc files, for debug
+      uses: actions/upload-artifact@master
       with:
         name: output
         path: output
 
-    - name: Upload artifact with CSL JSON files
+    - name: Upload artifact with CSL JSON files, for debug
       uses: actions/upload-artifact@v1
       with:
-        name: zotero-${{matrix.zotero-collection.group}}-${{matrix.zotero-collection.id}}-${{matrix.zotero-collection.name}}
+        name: zotero-${{ matrix.zotero-collection.group }}-${{ matrix.zotero-collection.id }}-${{ matrix.zotero-collection.name }}-${{ matrix.language }}
         path: zotero
