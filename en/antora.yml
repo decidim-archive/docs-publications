@@ -1,0 +1,5 @@
+name: publications
+title: "Publications"
+version: master
+nav:
+- modules/ROOT/nav.adoc
