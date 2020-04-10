@@ -1,7 +1,7 @@
 :page-partial:
 
 [[bibliography]]
-== Media publications mentioning Decidim
+== Media publications (quoting Decidim)
 
 [[refs]]
 [[ref-4881969-7R8A6K8U]]
