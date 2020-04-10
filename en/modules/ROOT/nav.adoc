@@ -3,6 +3,6 @@
 * xref:publications:ROOT:technical.adoc[Technical documents]
 * xref:publications:ROOT:media.adoc[Media publications]
 * xref:publications:ROOT:media-mentions.adoc[Mentions in media]
-* xref:publications:ROOT:interviews.adoc[Interviews]
-* xref:publications:ROOT:presentations.adoc[Presentations]
+// * xref:publications:ROOT:interviews.adoc[Interviews]
+// * xref:publications:ROOT:presentations.adoc[Presentations]
 * xref:publications:ROOT:video-talks.adoc[Video talks]
