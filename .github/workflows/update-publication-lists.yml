@@ -29,12 +29,12 @@ jobs:
           key: 'ZJP46GGY'
           file-name: media
           group: '1607464'
-          title: 'Media publications by Decidim contributors'
+          title: 'Media publications (by Decidim contributors)'
         - name: selection-news
           key: 'MD78TNG6'
           file-name: media-mentions
           group: '1607464'
-          title: 'Media publications mentioning Decidim'
+          title: 'Media publications (quoting Decidim)'
         - name: selection-interviews
           key: '26V6QPYI'
           file-name: interviews
