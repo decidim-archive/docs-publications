@@ -1,8 +1,8 @@
 name: publications
-title: "Publications"
+title: "Publicaciones"
 version: master
 asciidoc:
   attributes:
-    page-component-lang: en
+    page-component-lang: es
 nav:
 - modules/ROOT/nav.adoc
