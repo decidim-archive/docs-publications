@@ -138,7 +138,12 @@ jobs:
   
     - name: Add 'page-partial' attribute
       # TODO: in Antora version > 2.2 command -i in sed not neccessary
-      run: sed -i -e '1 i\:page-partial:\n' -e 's/== /= /' -e 's/\[\[bibliography\]\]/[bibliography]/' asciidoc/${{ matrix.language }}/modules/ROOT/pages/${{ matrix.zotero-collection.file-name }}.adoc
+      run: >
+        sed -i 
+        -e '1 i\:page-partial:\n' 
+        -e 's/== /= /' 
+        -e 's/\[\[bibliography\]\]/[bibliography]/' 
+        asciidoc/${{ matrix.language }}/modules/ROOT/pages/${{ matrix.zotero-collection.file-name }}.adoc
 
     - name: Upload artifact with Asciidoc files
       uses: actions/upload-artifact@master
