@@ -136,14 +136,16 @@ jobs:
           --to asciidoctor
           --output="asciidoc/${{ matrix.language }}/modules/ROOT/pages/${{ matrix.zotero-collection.file-name }}.adoc"
   
-    - name: Add 'page-partial' attribute
-      # TODO: in Antora version > 2.2 command -i in sed not neccessary
+    - name: Use sed to fix some problems in generated Asciidoc
+      # TODO: in Antora version > 2.2 adding ":page-partial:" is not neccessary
       run: >
         sed -i 
-        -e '1 i\:page-partial:\ninclude::translations::partial$attributes.adoc[]\ninclude::translations::partial$publication-labels.adoc[]' 
         -e 's/== /= /'
         -e 's/= \\{/= {/'
         -e 's/\[\[bibliography\]\]/[bibliography]/' 
+        -e '1 i\:page-partial:\n'
+        -e '2 i\include::translations::partial$attributes.adoc[]\n'
+        -e '3 i\include::translations::partial$publication-labels.adoc[]\n' 
         asciidoc/${{ matrix.language }}/modules/ROOT/pages/${{ matrix.zotero-collection.file-name }}.adoc
 
     - name: Upload artifact with Asciidoc files
