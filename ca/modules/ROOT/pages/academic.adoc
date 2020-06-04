@@ -1,7 +1,8 @@
 :page-partial:
-
+include::translations::partial$attributes.adoc[]
+include::translations::partial$publication-labels.adoc[]
 [bibliography]
-= Academic publications
+= {academic-label}
 
 [[refs]]
 [[ref-4881969-DJZCCH7V]]

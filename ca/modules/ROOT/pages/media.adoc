@@ -1,7 +1,8 @@
 :page-partial:
-
+include::translations::partial$attributes.adoc[]
+include::translations::partial$publication-labels.adoc[]
 [bibliography]
-= Media publications (by Decidim contributors)
+= {media-label}
 
 [[refs]]
 [[ref-4881969-29GYCR7C]]
