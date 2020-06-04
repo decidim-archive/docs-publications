@@ -1,11 +1,11 @@
 :page-partial:
 
-[bibliography]
 include::translations::partial$attributes.adoc[]
 
-= {media-label}
 include::translations::partial$publication-labels.adoc[]
 
+[bibliography]
+= {media-label}
 
 [[refs]]
 [[ref-4881969-5S8YDPSN]]

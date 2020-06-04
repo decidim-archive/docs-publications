@@ -1,11 +1,11 @@
 :page-partial:
 
-[bibliography]
 include::translations::partial$attributes.adoc[]
 
-= {video-talks-label}
 include::translations::partial$publication-labels.adoc[]
 
+[bibliography]
+= {video-talks-label}
 
 [[refs]]
 [[ref-4881969-S7W4DL9X]]

@@ -1,11 +1,11 @@
 :page-partial:
 
-[bibliography]
 include::translations::partial$attributes.adoc[]
 
-= {technical-label}
 include::translations::partial$publication-labels.adoc[]
 
+[bibliography]
+= {technical-label}
 
 [[refs]]
 [[ref-4881969-RCNETHPF]]
