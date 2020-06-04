@@ -144,8 +144,8 @@ jobs:
         -e 's/= \\{/= {/'
         -e 's/\[\[bibliography\]\]/[bibliography]/' 
         -e '1 i\:page-partial:\n'
-        -e '2 i\include::translations::partial$attributes.adoc[]\n'
-        -e '3 i\include::translations::partial$publication-labels.adoc[]\n' 
+        -e '1 i\include::translations::partial$attributes.adoc[]\n'
+        -e '1 i\include::translations::partial$publication-labels.adoc[]\n' 
         asciidoc/${{ matrix.language }}/modules/ROOT/pages/${{ matrix.zotero-collection.file-name }}.adoc
 
     - name: Upload artifact with Asciidoc files
