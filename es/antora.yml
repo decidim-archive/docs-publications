@@ -3,6 +3,7 @@ title: "Publicaciones"
 version: master
 asciidoc:
   attributes:
-    page-component-lang: es
+    lang: es@
+    page-lang: es@
 nav:
 - modules/ROOT/nav.adoc

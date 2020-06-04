@@ -19,37 +19,37 @@ jobs:
           key: 'PUEWSLWI'
           file-name: academic
           group: '1607464'
-          title: 'Academic publications'
+          title: '{academic-label}'
         - name: selection-technical-docs
           key: 'GULRY5KW'
           file-name: technical
           group: '1607464'
-          title: 'Technical documents'
+          title: '{technical-label}'
         - name: selection-media-articles
           key: 'ZJP46GGY'
           file-name: media
           group: '1607464'
-          title: 'Media publications (by Decidim contributors)'
+          title: '{media-label}'
         - name: selection-news
           key: 'MD78TNG6'
           file-name: media-mentions
           group: '1607464'
-          title: 'Media publications (quoting Decidim)'
+          title: '{media-mentions-label}'
         - name: selection-interviews
           key: '26V6QPYI'
           file-name: interviews
           group: '1607464'
-          title: 'Interviews'
+          title: '{interviews-label}'
         - name: selection-presentations
           key: '7BB2PRNI'
           file-name: presentations
           group: '1607464'
-          title: 'Presentations'
+          title: '{presentations-label}'
         - name: selection-talks-video
           key: 'FV7Q2L5P'
           file-name: video-talks
           group: '1607464'
-          title: 'Video talks'
+          title: '{video-talks-label}'
 
         language: ['en', 'es', 'ca']
 
@@ -140,8 +140,9 @@ jobs:
       # TODO: in Antora version > 2.2 command -i in sed not neccessary
       run: >
         sed -i 
-        -e '1 i\:page-partial:\n' 
-        -e 's/== /= /' 
+        -e '1 i\:page-partial:\ninclude::translations::partial$attributes.adoc[]\ninclude::translations::partial$publication-labels.adoc[]' 
+        -e 's/== /= /'
+        -e 's/= \\{/= {/'
         -e 's/\[\[bibliography\]\]/[bibliography]/' 
         asciidoc/${{ matrix.language }}/modules/ROOT/pages/${{ matrix.zotero-collection.file-name }}.adoc
 

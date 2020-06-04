@@ -3,6 +3,7 @@ title: "Publicacions"
 version: master
 asciidoc:
   attributes:
-    page-component-lang: ca
+    lang: ca@
+    page-lang: ca@
 nav:
 - modules/ROOT/nav.adoc
