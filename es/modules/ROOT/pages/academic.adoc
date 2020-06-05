@@ -1,11 +1,10 @@
-include::translations::partial$attributes.adoc[]
-include::translations::partial$publication-labels.adoc[]
-
 [bibliography]
 = {academic-label}
 :page-partial:
 
+include::translations::partial$attributes.adoc[]
 [[refs]]
+include::translations::partial$publication-labels.adoc[]
 [[ref-4881969-DJZCCH7V]]
 * Barandiaran, X. E. (2019). Tecnopolítica, municipalismo y radicalización democrática. En L. Roth, A. Monterde, & A. Calleja-López (Eds.), _Ciudades Democráticas. La revuelta municipalista en el ciclo post-15M_ (pp. 173-207). Icaria. http://ciudadesdemocraticas.tecnopolitica.net/
 

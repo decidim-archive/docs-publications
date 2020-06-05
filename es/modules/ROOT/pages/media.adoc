@@ -1,11 +1,10 @@
-include::translations::partial$attributes.adoc[]
-include::translations::partial$publication-labels.adoc[]
-
 [bibliography]
 = {media-label}
 :page-partial:
 
+include::translations::partial$attributes.adoc[]
 [[refs]]
+include::translations::partial$publication-labels.adoc[]
 [[ref-4881969-29GYCR7C]]
 * Barandiaran, X. E., & iaran. (2018, abril 24). _What is Decidim?_ https://xabier.barandiaran.net/2018/04/24/what-is-decidim/ +
 pass:[<div class="biblio-abstract">][.biblio-abstract-label]#Abstract.# Many people ask what is this project called «Decidim» to which I have devoted my last two year of work with complete dedication. I wanted to share a brief summary here. This text is the…pass:[</div>]

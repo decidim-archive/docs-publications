@@ -1,11 +1,10 @@
-include::translations::partial$attributes.adoc[]
-include::translations::partial$publication-labels.adoc[]
-
 [bibliography]
 = {video-talks-label}
 :page-partial:
 
+include::translations::partial$attributes.adoc[]
 [[refs]]
+include::translations::partial$publication-labels.adoc[]
 [[ref-4881969-S7W4DL9X]]
 * Participa Pamplona. (2017a, juliol 18). _Decidim Barcelona (Xabier Barandiaran)_. https://www.youtube.com/watch?v=zQYvdwGsg8M +
 pass:[<div class="biblio-abstract">][.biblio-abstract-label]#Abstract.# 1a Jornada de tecnología y democracia (24/05/2017). Infraestructuras digitales para la democracia. Decidim Barcelona Xabier Barandiaran. Coordinador del proyecto Decidim, asesor de la Regiduría de Participación del Ayuntamiento de Barcelona. Teknologia eta demokraziari buruzko 1. jardunaldia (24/05/2017). Demokrazia partizipatiborako azpiegitura digitalak Decidim Barcelona Xabier Barandiaran. Decidim proiektuaren koordinatzailea eta Bartzelonako Udaleko Partaidetza zinegotziaren aholkulariapass:[</div>]
