@@ -143,8 +143,8 @@ jobs:
         -e 's/== /= /'
         -e 's/= \\{/= {/'
         -e 's/\[\[bibliography\]\]/[bibliography]/' 
-        -e '1 i\:page-partial:\n'
-        -e '1 i\include::translations::partial$attributes.adoc[]\n'
+        -e '3 i\:page-partial:'
+        -e '1 i\include::translations::partial$attributes.adoc[]'
         -e '1 i\include::translations::partial$publication-labels.adoc[]\n' 
         asciidoc/${{ matrix.language }}/modules/ROOT/pages/${{ matrix.zotero-collection.file-name }}.adoc
 
