@@ -1,10 +1,10 @@
 [bibliography]
 = {media-mentions-label}
 :page-partial:
-
 include::translations::partial$attributes.adoc[]
-[[refs]]
 include::translations::partial$publication-labels.adoc[]
+
+[[refs]]
 [[ref-4881969-ZKNJCZHV]]
 * _Why we should dispel the negative image of smart cities_. (2019, September 12). https://www.information-age.com/negative-image-of-smart-cities-123485288/ +
 pass:[<div class="biblio-abstract">][.biblio-abstract-label]#Abstract.# Mikael Sandberg, chairman of VXFIBER, explains why we should think more positively about the benefits smart citiespass:[</div>]

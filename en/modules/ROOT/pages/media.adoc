@@ -1,10 +1,10 @@
 [bibliography]
 = {media-label}
 :page-partial:
-
 include::translations::partial$attributes.adoc[]
-[[refs]]
 include::translations::partial$publication-labels.adoc[]
+
+[[refs]]
 [[ref-4881969-5S8YDPSN]]
 * Calleja-López, A., Monterde, A., & Barandiaran, X. E. (2017, October 18). _De las redes sociales a las redes (tecno)políticas: redes de tercera generación para la democracia del siglo XXI_ [Text]. http://tecnopolitica.net/content/de-las-redes-sociales-las-redes-tecnopol%C3%ADticas-redes-de-tercera-generaci%C3%B3n-para-la +
 pass:[<div class="biblio-abstract">][.biblio-abstract-label]#Abstract.# La sociedad deviene (en) red.pass:[</div>]
