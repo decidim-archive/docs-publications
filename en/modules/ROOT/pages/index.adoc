@@ -1,4 +1,6 @@
 = Publications
+include::translations::partial$attributes.adoc[]
+include::translations::partial$publication-labels.adoc[]
 
 :leveloffset: +1
 
