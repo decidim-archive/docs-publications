@@ -1,8 +1,7 @@
 [bibliography]
 = {technical-label}
 :page-partial:
-include::translations::partial$attributes.adoc[]
-include::translations::partial$publication-labels.adoc[]
+include::decidim::partial$l10n.adoc[]
 
 [[refs]]
 [[ref-4881969-RCNETHPF]]
