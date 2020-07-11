@@ -1,5 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <style xmlns="http://purl.org/net/xbiblio/csl" class="in-text" version="1.0" demote-non-dropping-particle="never" page-range-format="expanded">
+  <!-- This style was edited with the Visual CSL Editor (https://editor.citationstyles.org/visualEditor/) -->
   <info>
     <title>American Psychological Association 7th edition (adapted to Asciidoc)</title>
     <title-short>APA (adapted to Asciidoc)</title-short>
@@ -18,7 +19,7 @@
     <category citation-format="author-date"/>
     <category field="psychology"/>
     <category field="generic-base"/>
-    <updated>2020-04-08T16:03:28+00:00</updated>
+    <updated>2020-07-11T18:33:07+00:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale xml:lang="en">
@@ -1588,7 +1589,7 @@
           </group>
         </else>
       </choose>
-      <text variable="abstract" display="block" prefix="pass:[&lt;div class=&quot;biblio-abstract&quot;&gt;][.biblio-abstract-label]#Abstract.# " suffix="pass:[&lt;/div&gt;]"/>
+      <text variable="abstract" prefix=" pass:[&lt;div class=&quot;biblio-abstract&quot;&gt;&lt;details&gt;&lt;summary&gt;][.biblio-abstract-label]#Abstract.# pass:[&lt;/summary&gt;&lt;div class=&quot;biblio-abstract-content&gt;]" suffix="pass:[&lt;/div&gt;&lt;/details&gt;&lt;/div&gt;]"/>
     </layout>
   </bibliography>
 </style>
