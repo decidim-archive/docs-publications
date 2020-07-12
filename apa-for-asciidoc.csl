@@ -19,7 +19,7 @@
     <category citation-format="author-date"/>
     <category field="psychology"/>
     <category field="generic-base"/>
-    <updated>2020-07-11T18:33:07+00:00</updated>
+    <updated>2020-07-12T09:33:33+00:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale xml:lang="en">
@@ -1589,7 +1589,7 @@
           </group>
         </else>
       </choose>
-      <text variable="abstract" prefix=" pass:[&lt;div class=&quot;biblio-abstract&quot;&gt;&lt;details&gt;&lt;summary&gt;][.biblio-abstract-label]#Abstract.# pass:[&lt;/summary&gt;&lt;div class=&quot;biblio-abstract-content&gt;]" suffix="pass:[&lt;/div&gt;&lt;/details&gt;&lt;/div&gt;]"/>
+      <text variable="abstract" display="block" prefix=" pass:[&lt;div class=&quot;biblio-abstract&quot;&gt;&lt;details&gt;&lt;summary&gt;][.biblio-abstract-label]#Abstract.# pass:[&lt;/summary&gt;&lt;div class=&quot;biblio-abstract-content&quot;&gt;] " suffix="pass:[&lt;/div&gt;&lt;/details&gt;&lt;/div&gt;]"/>
     </layout>
   </bibliography>
 </style>
